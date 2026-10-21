@@ -12,10 +12,10 @@
 <script>
 (function(){
  const frames=[...document.querySelectorAll('.film iframe[data-video]')];
- const params='?background=1&autoplay=1&muted=1&loop=1&autopause=0&playsinline=1&title=0&byline=0&portrait=0&dnt=1&initial_quality=360p#t=5s';
- // Native browser iframe loading: no queues, retries, SDK, or competing metadata requests.
+ const params='?autoplay=0&muted=0&loop=0&autopause=1&playsinline=1&controls=1&title=0&byline=0&portrait=0&dnt=1';
+ // User-controlled playback: no autoplay and standard Vimeo player controls.
  frames.forEach((frame,i)=>{
-  frame.loading='eager';
+  frame.loading=i<2?'eager':'lazy';
   frame.referrerPolicy='strict-origin-when-cross-origin';
   frame.src='https://player.vimeo.com/video/'+encodeURIComponent(frame.dataset.video)+params;
  });
