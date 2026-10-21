@@ -20,7 +20,6 @@
   let retry=box.querySelector('.video-retry');
   if(!retry){retry=document.createElement('button');retry.type='button';retry.className='video-retry';retry.textContent='RETRY VIDEO';retry.hidden=true;box.append(retry);retry.addEventListener('click',()=>{retry.hidden=true;frame.src='about:blank';requestAnimationFrame(()=>{frame.src=url(job.id)+'&retry='+Date.now()})})}
   // If the player never responds, provide a user-controlled retry rather than a permanent blank frame.
-  setTimeout(()=>{if(!retry.hidden)return;},0);
   const timer=setTimeout(()=>{if(!frame.dataset.confirmed)retry.hidden=false},18000);
   frame.addEventListener('load',()=>{clearTimeout(timer);setTimeout(()=>{retry.hidden=true},700)},{once:true});
  }
